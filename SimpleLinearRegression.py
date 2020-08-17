@@ -58,14 +58,11 @@ valid.index = data[518:].index
 train.index = data[:518].index
 
 #plotting the training data and new Predictions
-xmin, xmax = plt.xlim()
-ymin, ymax = plt.ylim()
 plt.figure(figsize = (20,10))
 plt.plot(train['MCP'])
 plt.plot(valid[['MCP', 'Predictions']])
 plt.xlabel('Days (Data from 11/07/2020 to 18/07/2020)')
 plt.ylabel('MCP (Market Clearing Price) in Rupees/MWh')
-plt.xlim([0,xmax])
 plt.title('Weekly Prediction')
 plt.xticks([0,100,200,300,400,500,600,700],['Saturday','Sunday','Monday',
                                             'Tuesday','Wednesday', 'Thursday',
