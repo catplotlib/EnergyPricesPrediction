@@ -3,6 +3,7 @@ from sklearn import neighbors
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import accuracy_score
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.metrics import r2_score
 import pandas as pd
 import numpy as np
 
@@ -20,13 +21,11 @@ plt.rcParams["font.size"] = 22
 scaler = MinMaxScaler(feature_range=(0, 1))
 
 #read the file
-df = pd.read_csv('8daysMin - PriceMinute.csv')
+data = pd.read_csv('8daysMin - PriceMinute.csv')
 
 #setting index as date
-df.index = df['Date']
+data.index = data['Date']
 
-#sorting
-data = df.sort_index(ascending=True, axis=0)
 
 #split into train and validation
 train = data[:518]
@@ -59,7 +58,6 @@ rms=np.sqrt(np.mean(np.power((np.array(y_valid)-np.array(preds)),2)))
 #r2 scores
 x=valid['MCP'].values
 x = x.reshape(-1,1)
-from sklearn.metrics import r2_score
 error=r2_score(x, preds, sample_weight=None, multioutput='uniform_average')
 
 #setting indexes for graphs
@@ -68,18 +66,19 @@ valid.index = data[518:].index
 train.index = data[:518].index
 
 #plotting the training data and new Predictions
-plt.figure(figsize = (20,10))
+xmin, xmax = plt.xlim()
 plt.plot(train['MCP'])
 plt.plot(valid[['MCP', 'Predictions']])
 plt.xlabel('Days (Data from 11/07/2020 to 18/07/2020)')
 plt.ylabel('MCP (Market Clearing Price) in Rupees/MWh')
+plt.xlim([0,xmax])
 plt.title('Weekly Prediction')
-plt.xticks([0,100,200,300,400,500,600,700],['Saturday','Sunday','Monday',
+plt.xticks([0,96,192,288,384,480,576,672],['Saturday','Sunday','Monday',
                                             'Tuesday','Wednesday', 'Thursday',
                                             'Friday','Saturday'])
+
 blue_patch = mpatches.Patch(color='#5497c5', label='Training Data(Price)')
 orange_patch = mpatches.Patch(color='#ff902e', label='Validating Data(Price)')
 green_patch = mpatches.Patch(color='#3ba73b', label='Prediction(Price)')
-plt.legend(handles=[blue_patch,orange_patch,green_patch])                                    
-plt.show() 
-
+plt.legend(handles=[blue_patch,orange_patch,green_patch])                                         
+plt.show()
