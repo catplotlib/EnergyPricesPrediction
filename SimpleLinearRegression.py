@@ -1,5 +1,7 @@
 #import packages
 import pandas as pd
+pd.options.mode.chained_assignment = None
+
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
@@ -17,15 +19,13 @@ plt.rcParams["font.size"] = 18
 #read the file
 df = pd.read_csv('8daysMin - PriceMinute.csv')
 
-#setting index as date
-df.index = df['Date']
-
 #sorting
 data = df.sort_index(ascending=True, axis=0)
 
 #splitting training and validation Data
 train = data[:518]
 valid = data[518:]
+
 
 #selecting relevant columns
 x_train = train.drop('MCP', axis=1)
