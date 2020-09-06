@@ -31,7 +31,7 @@ x_valid = valid.drop('MCP', axis=1)
 y_valid = valid['MCP']
 
 #Selecting and training the machine learning model
-model = SVR(kernel= 'rbf', C= 1e3, gamma= 'scale')
+model = SVR(kernel= 'rbf', C= 1e3, gamma= 'scale') #A lower C will encourage a larger margin, therefore a simpler decision function.
 model.fit(x_train,y_train)
 
 #Predicting the values
