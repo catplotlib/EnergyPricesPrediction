@@ -6,7 +6,7 @@ In this work, the focus is on exploring the possibilities of predicting the ener
 
 ![Image of Algorithms](https://github.com/catplotlib/EnergyPricesPrediction/blob/master/images/algorithms.jpg)
 
-After taking the data from IEX India for 8 days, and running our code on those algorithms, we get the following results:
+After taking the data from IEX India for 8 days, and running our code on these algorithms, we get the following results:
 
 1. Simple Linear Regression
 ![Image of SLR](https://github.com/catplotlib/EnergyPricesPrediction/blob/master/images/simpleLinearRegression.png)
