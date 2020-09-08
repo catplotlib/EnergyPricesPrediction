@@ -23,9 +23,6 @@ scaler = MinMaxScaler(feature_range=(0, 1))
 #read the file
 data = pd.read_csv('8daysMin - PriceMinute.csv')
 
-#setting index as date
-data.index = data['Date']
-
 
 #split into train and validation
 train = data[:518]
