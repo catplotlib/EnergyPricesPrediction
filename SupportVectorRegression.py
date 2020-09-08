@@ -1,6 +1,7 @@
 #import packages
 import pandas as pd
 pd.options.mode.chained_assignment = None
+from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 from sklearn.svm import SVR
 from sklearn.metrics import r2_score
@@ -23,6 +24,8 @@ data = pd.read_csv('8daysMin - PriceMinute.csv')
 train = data[:518]
 valid = data[518:]
 
+#for normalizing data
+scaler = MinMaxScaler(feature_range=(0, 1))
 
 #selecting relevant columns
 x_train = train.drop('MCP', axis=1)
@@ -30,8 +33,14 @@ y_train = train['MCP']
 x_valid = valid.drop('MCP', axis=1)
 y_valid = valid['MCP']
 
+#scaling data
+x_train_scaled = scaler.fit_transform(x_train)
+x_train = pd.DataFrame(x_train_scaled)
+x_valid_scaled = scaler.fit_transform(x_valid)
+x_valid = pd.DataFrame(x_valid_scaled)
+
 #Selecting and training the machine learning model
-model = SVR(kernel= 'rbf', C= 1e3, gamma= 'scale') #A lower C will encourage a larger margin, therefore a simpler decision function.
+model = SVR(kernel= 'rbf', C= 1e3, gamma= 'scale')
 model.fit(x_train,y_train)
 
 #Predicting the values
