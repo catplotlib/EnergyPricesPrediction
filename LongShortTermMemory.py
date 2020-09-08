@@ -50,7 +50,7 @@ model.add(Dense(1))
 model.compile(loss='mean_squared_error', optimizer='adam')
 model.fit(x_train, y_train, epochs=11, batch_size=1, verbose=2)
 
-#predicting 246 values, using past 60 from the train data
+#Using past 60 from the train data
 inputs = data[len(data) - len(valid) - 60:].values
 inputs = inputs.reshape(-1,1)
 inputs  = scaler.transform(inputs)
