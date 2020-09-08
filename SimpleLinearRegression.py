@@ -1,6 +1,7 @@
 #import packages
 import pandas as pd
 pd.options.mode.chained_assignment = None
+from sklearn.preprocessing import MinMaxScaler
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import r2_score
@@ -19,14 +20,24 @@ plt.rcParams["font.size"] = 18
 data = pd.read_csv('8daysMin - PriceMinute.csv')
 
 #splitting training and validation Data
+
 train = data[:518]
 valid = data[518:]
+
+#for normalizing data
+scaler = MinMaxScaler(feature_range=(0, 1))
 
 #selecting relevant columns
 x_train = train.drop('MCP', axis=1)
 y_train = train['MCP']
 x_valid = valid.drop('MCP', axis=1)
 y_valid = valid['MCP']
+
+#scaling data
+x_train_scaled = scaler.fit_transform(x_train)
+x_train = pd.DataFrame(x_train_scaled)
+x_valid_scaled = scaler.fit_transform(x_valid)
+x_valid = pd.DataFrame(x_valid_scaled)
 
 #Selecting and training the machine learning model
 model = LinearRegression()
@@ -42,6 +53,7 @@ rms=np.sqrt(np.mean(np.power((np.array(y_valid)-np.array(preds)),2)))
 x=valid['MCP'].values
 x = x.reshape(-1,1)
 error=r2_score(x, preds, sample_weight=None, multioutput='uniform_average')
+
 
 #setting indexes for graphs
 valid['Predictions'] = preds
