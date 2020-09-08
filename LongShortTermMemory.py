@@ -61,22 +61,22 @@ for i in range(60,inputs.shape[0]):
 X_test = np.array(X_test)
 
 X_test = np.reshape(X_test, (X_test.shape[0],X_test.shape[1],1))
-closing_price = model.predict(X_test)
-closing_price = scaler.inverse_transform(closing_price)
+preds = model.predict(X_test)
+preds = scaler.inverse_transform(preds)
 
 #root means square error values
-rms=np.sqrt(np.mean(np.power((valid-closing_price),2)))
+rms=np.sqrt(np.mean(np.power((valid-preds),2)))
 
 #r2 scores
 x = valid.reshape(-1,1)
-error=r2_score(x, closing_price, sample_weight=None, multioutput='uniform_average')
+error=r2_score(x, preds, sample_weight=None, multioutput='uniform_average')
 
 #setting indexes for graphs
 train = data[:518]
 valid = data[518:]
 
 #plotting the training data and new Predictions
-valid['Predictions'] = closing_price
+valid['Predictions'] = preds
 xmin, xmax = plt.xlim()
 plt.plot(train['MCP'])
 plt.plot(valid[['MCP', 'Predictions']])
