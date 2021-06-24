@@ -3,11 +3,11 @@
 In this work, the focus is on exploring the possibilities of predicting the energy price in the open electricity market using four different algorithms namely: Simple Linear Regression, Support Vector Machines (SVM), K nearest neighbor, and Long Short-Term Memory.
 
 Main focus of the paper
->Data handling
->Visualization
->Machine Learning algorithms
->Comparative analysis
->Prediction
+ >Data handling
+ >Visualization
+ >Machine Learning algorithms
+ >Comparative analysis
+ >Prediction
 
 # Publication
 ICUE 2020, IEEE Thailand Section
