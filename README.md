@@ -4,9 +4,13 @@ In this work, the focus is on exploring the possibilities of predicting the ener
 
 Main focus of the paper
  > Data handling
+ > 
  > Visualization
+ > 
  > Machine Learning algorithms
+ > 
  > Comparative analysis
+ > 
  > Prediction
 
 # Publication
