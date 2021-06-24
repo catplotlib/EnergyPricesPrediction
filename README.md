@@ -4,6 +4,11 @@ Till the early 20th century, almost all power generation in India were state-run
 
 In this work, the focus is on exploring the possibilities of predicting the energy price in the open electricity market using four different algorithms namely: Simple Linear Regression, Support Vector Machines (SVM), K nearest neighbor, and Long Short-Term Memory.
 
+#Publication
+ICUE 2020, IEEE Thailand Section
+International Conference on Utilities and Exhibition
+https://ieeexplore.ieee.org/document/9307100
+
 ![Image of Algorithms](https://github.com/catplotlib/EnergyPricesPrediction/blob/master/images/algorithms.jpg)
 
 After taking the data from IEX India for 8 days, and running our code on these algorithms, we get the following results:
